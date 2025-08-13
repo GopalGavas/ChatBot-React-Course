@@ -18,12 +18,20 @@
         const ChatInput = ({ chatMessages, setChatMessages }) => {
 
             const [inputText, setInputText] = React.useState("")
+            const [isLoading, setIsLoading] = React.useState(false)
+
 
             function saveInputText(event) {
                 setInputText(event.target.value);
             }
 
-            function sendMessage() {
+
+            async function sendMessage() {
+                if (isLoading || inputText === "") {
+                    return
+                }
+
+                setIsLoading(true)
 
                 const addNewMessage = [...chatMessages,
                 {
@@ -33,9 +41,17 @@
                 }
                 ]
 
-                setChatMessages(addNewMessage);
+                setChatMessages([...addNewMessage,
+                {
+                    message: "Loading...",
+                    sender: "robot",
+                    id: crypto.randomUUID()
+                }
+                ]);
 
-                const response = Chatbot.getResponse(inputText)
+                setInputText("")
+
+                const response = await Chatbot.getResponseAsync(inputText)
                 setChatMessages([...addNewMessage,
                 {
                     message: response,
@@ -44,14 +60,23 @@
                 }
                 ]);
 
+                setIsLoading(false)
+            }
 
-                setInputText("")
+            function handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    sendMessage()
+                }
+
+                if (event.key === "Escape") {
+                    setInputText("")
+                }
             }
 
             return (
                 <>
                     <input placeholder="Send a message to Chatbot" size="30"
-                        onChange={saveInputText} value={inputText}
+                        disabled={isLoading} onChange={saveInputText} onKeyDown={handleKeyDown} value={inputText}
                     />
                     <button onClick={sendMessage}>Send</button>
                 </>
