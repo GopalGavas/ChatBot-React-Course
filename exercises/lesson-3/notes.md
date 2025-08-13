@@ -15,3 +15,8 @@
 
 - Data that is connected to the html.
 - When we update this data it will update the html.
+- _Note_: In react we should not update the data directly, we should always create a copy and then modify the copy
+
+## Lifting the State Up
+
+- Moving the state up to the outer component, which allows us to share state between multiple components
