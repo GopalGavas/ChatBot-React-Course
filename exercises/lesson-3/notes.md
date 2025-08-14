@@ -20,3 +20,7 @@
 ## Lifting the State Up
 
 - Moving the state up to the outer component, which allows us to share state between multiple components
+
+## Hooks
+
+- Hooks let us insert React features into our component
