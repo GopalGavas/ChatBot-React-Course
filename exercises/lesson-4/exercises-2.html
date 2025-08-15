@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 - Exercises(part-2)</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h2 {
+            font-weight: 300;
+        }
+
+        input {
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: rgb(0, 123, 255);
+            color: #fff;
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .showPassword-btn {
+            background-color: #fff;
+            color: rgb(0, 123, 255);
+            padding: 8px 12px;
+            border: 1px solid rgb(0, 123, 255);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in;
+        }
+
+        .showPassword-btn:hover,
+        .showPassword-btn:active {
+            background-color: rgb(0, 123, 255);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+
+        const FormComponent = () => {
+            const [passwordVisibility, setPasswordVisibility] = React.useState("password")
+
+            function togglePasswordVisibility() {
+                setPasswordVisibility((prev) =>
+                    prev === "password" ? "text" : "password"
+                )
+            }
+
+            return (
+                <>
+                    <h2>Hello, welcome to my website</h2>
+                    <input type="text" placeholder="Email" size="25" />
+                    <br />
+                    <input type={passwordVisibility} placeholder="Password" size="25" />
+                    <button className="showPassword-btn" onClick={togglePasswordVisibility}>{passwordVisibility === "text" ? "hide" : "show"}</button>
+                    <br />
+                    <button>Login</button>
+                    <button>Sign Up</button>
+                </>
+            )
+        }
+
+        const ClockComponent = () => {
+            const [currentTime, setCurrentTime] = React.useState(dayjs().format('HH:mm:ss'))
+
+            React.useEffect(() => {
+                const interval = setInterval(() => {
+                    setCurrentTime(dayjs().format("HH:mm:ss"))
+                    // console.log("updating");
+                }, 1000)
+
+                return () => clearInterval(interval)
+            }, [])
+
+            return (
+                <>
+                    <p>{currentTime}</p>
+                </>
+            )
+        }
+
+        const App = () => {
+            return (
+                <>
+                    <FormComponent />
+                    <ClockComponent />
+                </>
+            )
+        }
+
+
+        const container = document.querySelector(".js-container")
+        ReactDOM.createRoot(container).render(<App />)
+    </script>
+
+
+</body>
+
+</html>
