@@ -1,0 +1,26 @@
+.user-message {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+}
+
+.profile-image {
+    width: 45px;
+    border-radius: 45px;
+    object-fit: cover;
+}
+
+.robot-message {
+    display: flex;
+    align-items: start;
+}
+
+.text-message {
+    background-color: #eee;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
