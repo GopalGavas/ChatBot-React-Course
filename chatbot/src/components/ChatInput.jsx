@@ -26,6 +26,7 @@ const ChatInput = ({ chatMessages, setChatMessages }) => {
         message: inputText,
         sender: "user",
         id: crypto.randomUUID(),
+        timestamp: Date.now(),
       },
     ];
 
@@ -51,6 +52,7 @@ const ChatInput = ({ chatMessages, setChatMessages }) => {
         message: response,
         sender: "robot",
         id: crypto.randomUUID(),
+        timestamp: Date.now(),
       },
     ]);
 
@@ -67,6 +69,10 @@ const ChatInput = ({ chatMessages, setChatMessages }) => {
     }
   }
 
+  function clearMessages() {
+    setChatMessages([]);
+  }
+
   return (
     <div className="chat-input-container">
       <input
@@ -80,6 +86,9 @@ const ChatInput = ({ chatMessages, setChatMessages }) => {
       />
       <button className="send-button" onClick={sendMessage}>
         Send
+      </button>
+      <button className="clear-button" onClick={clearMessages}>
+        Clear
       </button>
     </div>
   );

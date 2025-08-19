@@ -5,11 +5,17 @@ import { Chatbot } from "supersimpledev";
 import "./App.css";
 
 const App = () => {
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState(() => {
+    return JSON.parse(localStorage.getItem("messages")) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(chatMessages));
+  }, [chatMessages]);
 
   useEffect(() => {
     Chatbot.addResponses({
-      "give me a four digit otp": function () {
+      "can you genearate an otp for me": function () {
         return `Sure here is your four digit otp: ${Math.floor(
           Math.random() * 9000 + 1000
         )}`;
@@ -18,7 +24,7 @@ const App = () => {
         return `Here is your unique Id ${crypto.randomUUID()}`;
       },
     });
-  });
+  }, []);
 
   return (
     <div className="app-container">

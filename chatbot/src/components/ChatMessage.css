@@ -15,12 +15,19 @@
     align-items: start;
 }
 
-.text-message {
+.text-message-container {
     background-color: #eee;
     padding: 10px 12px;
     border-radius: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
     max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.text-time {
+    font-size: 14px;
+    color: rgb(125, 125, 125);
 }
