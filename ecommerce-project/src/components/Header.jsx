@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import "./Header.css";
 
 const Header = () => {
@@ -21,9 +21,9 @@ const Header = () => {
         </div>
 
         <div className="right-section">
-          <Link className="orders-link header-link" to="/orders">
+          <NavLink className="orders-link header-link" to="/orders">
             <span className="orders-text">Orders</span>
-          </Link>
+          </NavLink>
 
           <Link className="cart-link header-link" to="/checkout">
             <img className="cart-icon" src="images/icons/cart-icon.png" />
