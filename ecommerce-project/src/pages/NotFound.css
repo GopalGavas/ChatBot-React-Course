@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    gap: 20px;
+}
+
+.error-heading {
+    font-size: 42px;
+    color: #e63946;
+    font-weight: bold;
+}
+
+.error-text {
+    font-size: 20px;
+    color: #555;
+}
+
+.error-redirect {
+    padding: 10px 15px;
+   background-color:#084f2d;
+   color: #fff;
+   border-radius: 8px;
+   text-decoration: none;
+   font-weight: bold;
+}
